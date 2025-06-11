@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ecofy - Educação Ambiental</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="assets/logo.png" class="logo" />
+    <nav>
+      <a href="home.html">Início</a>
+      <a href="recompensas.html">Recompensas</a>
+      <a href="educacao.html">Educação</a>
+      <button onclick="logout()">Sair</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>Educação Ambiental</h2>
+    <section>
+      <h3>Por que reciclar?</h3>
+      <p>A reciclagem reduz o impacto ambiental, economiza recursos naturais e gera empregos.</p>
+    </section>
+
+    <section>
+      <h3>Tipos de resíduos</h3>
+      <ul>
+        <li><strong>Óleo usado:</strong> Não deve ser descartado no ralo. Leve a um ponto de coleta.</li>
+        <li><strong>Pilhas:</strong> Contêm metais tóxicos. Descarte corretamente.</li>
+        <li><strong>Recicláveis:</strong> Plástico, vidro, papel e metais podem ser reciclados.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Links úteis</h3>
+      <ul>
+        <li><a href="https://www.gov.br/meioambiente/pt-br" target="_blank">Ministério do Meio Ambiente</a></li>
+        <li><a href="https://reciclagem.me/" target="_blank">Reciclagem.me</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Ecofy © 2025</p>
+  </footer>
+
+  <script>
+    function logout() {
+      localStorage.removeItem("logado");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

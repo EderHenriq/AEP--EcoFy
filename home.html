@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ecofy - Coleta Sustentável</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+  <header>
+    <img src="assets/logo.jpg" class="logo" />
+    <nav>
+      <a href="home.html">Início</a>
+      <a href="#">Recompensas</a>
+      <input type="search" placeholder="Buscar" />
+      <button onclick="logout()">Sair</button>
+    </nav>
+  </header>
+
+  <main>
+    <aside class="coleta">
+      <h3>Pontos de coleta</h3>
+      <ul id="lista-coleta"></ul>
+    </aside>
+
+    <section class="mapa-container">
+      <div id="mapa"></div>
+      <button class="btn-resgatar">Resgatar</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>Ecofy © 2025 - Sustentabilidade para o Futuro</p>
+  </footer>
+
+  <script src="mapa.js"></script>
+</body>
+</html>

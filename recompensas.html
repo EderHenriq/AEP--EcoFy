@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ecofy - Recompensas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="assets/logo.png" class="logo" />
+    <nav>
+      <a href="home.html">Início</a>
+      <a href="recompensas.html">Recompensas</a>
+      <a href="educacao.html">Educação</a>
+      <button onclick="logout()">Sair</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>Suas Recompensas</h2>
+    <p>Pontos acumulados: <span id="pontos">0</span></p>
+
+    <div class="recompensas-grid">
+      <div class="recompensa">
+        <h3>Desconto no mercado</h3>
+        <p>Troque por 50 pontos</p>
+        <button onclick="trocarRecompensa(50)">Trocar</button>
+      </div>
+      <div class="recompensa">
+        <h3>Ecobag personalizada</h3>
+        <p>Troque por 100 pontos</p>
+        <button onclick="trocarRecompensa(100)">Trocar</button>
+      </div>
+      <div class="recompensa">
+        <h3>Desconto em transporte público</h3>
+        <p>Troque por 150 pontos</p>
+        <button onclick="trocarRecompensa(150)">Trocar</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Ecofy © 2025</p>
+  </footer>
+
+  <script>
+    const pontosEl = document.getElementById('pontos');
+    let pontos = parseInt(localStorage.getItem("pontos") || "0");
+    pontosEl.textContent = pontos;
+
+    function trocarRecompensa(custo) {
+      if (pontos >= custo) {
+        pontos -= custo;
+        localStorage.setItem("pontos", pontos);
+        pontosEl.textContent = pontos;
+        alert("Recompensa resgatada com sucesso!");
+      } else {
+        alert("Pontos insuficientes.");
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem("logado");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Ecofy - Perfil</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <img src="assets/logo.png" class="logo" />
+    <nav>
+      <a href="home.html">Início</a>
+      <a href="recompensas.html">Recompensas</a>
+      <a href="educacao.html">Educação</a>
+      <a href="perfil.html">Perfil</a>
+      <a href="admin.html">Admin</a>
+      <button onclick="logout()">Sair</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>Perfil do Usuário</h2>
+    <p><strong>Usuário:</strong> <span id="user-nome"></span></p>
+    <p><strong>Pontos:</strong> <span id="user-pontos">0</span></p>
+  </main>
+
+  <footer>
+    <p>Ecofy © 2025</p>
+  </footer>
+
+  <script>
+    const usuario = localStorage.getItem("usuarioLogado") || "Convidado";
+    const pontos = localStorage.getItem("pontos") || 0;
+    document.getElementById("user-nome").textContent = usuario;
+    document.getElementById("user-pontos").textContent = pontos;
+
+    function logout() {
+      localStorage.removeItem("logado");
+      localStorage.removeItem("usuarioLogado");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

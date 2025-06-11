@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ecofy - Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="login-page">
+  <div class="login-container">
+    <img src="assets/logo.jpg" alt="Ecofy Logo" class="logo" />
+    <h1>Ecofy</h1>
+    <input type="text" id="usuario" placeholder="Usuário" />
+    <input type="password" id="senha" placeholder="Senha" />
+    <button onclick="login()">Entrar</button>
+    <p>Não tem conta? <a href="#" onclick="mostrarCadastro()">Cadastre-se</a></p>
+
+    <div id="cadastro" class="hidden">
+      <h2>Criar Conta</h2>
+      <input type="text" id="novoUsuario" placeholder="Novo usuário" />
+      <input type="password" id="novaSenha" placeholder="Senha" />
+      <button onclick="cadastrar()">Cadastrar</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
