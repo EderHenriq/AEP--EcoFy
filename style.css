@@ -15,7 +15,8 @@ header {
 }
 
 .logo {
-  height: 40px;
+  height: 70px;
+  border-radius: 50%;
 }
 
 nav {
@@ -38,8 +39,11 @@ main {
 .coleta {
   width: 25%;
   background: #ddd;
-  padding: 20px;
+  padding: 5px;
   border-radius: 10px;
+  position: relative;
+  gap: 5px;
+  
 }
 
 .mapa-container {
@@ -59,7 +63,7 @@ main {
 
 .btn-resgatar {
   padding: 10px 30px;
-  background: #ccc;
+  background:  #ff6a00;
   border-radius: 20px;
   border: none;
   cursor: pointer;
@@ -69,7 +73,8 @@ footer {
   background: #ff6a00;
   color: white;
   text-align: center;
-  padding: 10px;
+  padding: 30px;
+  
 }
 
 .login-page {
@@ -80,7 +85,7 @@ footer {
 }
 
 .login-container {
-  background: white;
+  background: #ff6b00;
   padding: 30px;
   border-radius: 10px;
   text-align: center;
