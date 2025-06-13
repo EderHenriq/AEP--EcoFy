@@ -140,17 +140,15 @@ function confirmarResgate() {
   }
 }
 
- document.addEventListener("DOMContentLoaded", function () {
-      window.addEventListener("scroll", function () {
-        const footer = document.getElementById("footer");
-        const scrollTop = window.scrollY;
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
+  window.addEventListener("scroll", function () {
+    const footer = document.getElementById("footer");
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const docHeight = document.documentElement.scrollHeight;
 
-        if (scrollTop + windowHeight >= documentHeight -1) {
-          footer.style.display = "block";
-        } else {
-          footer.style.display = "none";
-        }
-      });
-    });
+    if (scrollTop + windowHeight >= docHeight - 10) {
+      footer.classList.add("show");
+    } else {
+      footer.classList.remove("show");
+    }
+  });
