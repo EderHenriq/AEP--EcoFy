@@ -31,3 +31,4 @@ function cadastrar() {
 function mostrarCadastro() {
   document.getElementById("cadastro").classList.toggle("hidden");
 }
+

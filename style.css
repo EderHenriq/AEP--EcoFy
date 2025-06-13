@@ -6,7 +6,7 @@ body {
 }
 
 header {
-  background: #ff6a00;
+  background: #FF6B00;
   padding: 10px 20px;
   display: flex;
   align-items: center;
@@ -33,6 +33,8 @@ nav a {
 main {
   display: flex;
   padding: 20px;
+  gap: 20px;
+  padding-bottom: 30px;
 }
 
 .coleta {
@@ -59,14 +61,14 @@ main {
 
 .btn-resgatar {
   padding: 10px 30px;
-  background: #ccc;
+  background: #FF6B00;
   border-radius: 20px;
   border: none;
   cursor: pointer;
 }
 
 footer {
-  background: #ff6a00;
+  background: #FF6B00;
   color: white;
   text-align: center;
   padding: 10px;
@@ -97,7 +99,7 @@ input {
 }
 
 button {
-  background: #ff6a00;
+  background: #FF6B00;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -164,4 +166,119 @@ button {
     flex-direction: column;
     align-items: center;
   }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+}
+
+.modal-content input {
+  margin-top: 20px;
+  padding: 10px;
+  width: 80%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.modal-content button {
+  margin-top: 20px;
+  background-color: #28a745;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+.fechar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+ .coleta ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .coleta li {
+      background: #f0f0f0;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .coleta li:hover {
+      background: #e0e0e0;
+    }
+
+    .coleta {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+#filtro-tipo {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background-color: #f0f8ff; /* tom clarinho azul */
+  border: 2px solid #4CAF50; /* verde suave */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  appearance: none; /* remove o estilo padrão */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%234CAF50'%3e%3cpath d='M4 6l4 4 4-4z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+}
+
+#filtro-tipo:hover {
+  border-color: #388E3C;
+  box-shadow: 0 0 8px #4CAF50;
+}
+
+#filtro-tipo:focus {
+  outline: none;
+  border-color: #2E7D32;
+  box-shadow: 0 0 10px #388E3C;
+}
+
+footer {
+  display: none; /* oculto por padrão */
+  background-color: #FF6B00;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  position: relative;
+  width: 100%;
 }
