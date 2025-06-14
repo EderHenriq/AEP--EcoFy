@@ -15,7 +15,10 @@ header {
 }
 
 .logo {
-  height: 70px;
+  height: auto;
+  max-height: 120px;
+  width: auto;
+  max-width: 120px;
   border-radius: 50%;
 }
 
@@ -87,7 +90,7 @@ footer {
 }
 
 .login-container {
-  background: #ff6b00;
+  background: #ffffff;
   padding: 30px;
   border-radius: 10px;
   text-align: center;
@@ -104,7 +107,7 @@ input {
 }
 
 button {
-  background: #8f0b0b;
+  background: #019204;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -241,7 +244,7 @@ button {
       background: #e0e0e0;
     }
 
-    .coleta {
+  .coleta {
   max-height: 80vh;
   overflow-y: auto;
 }
@@ -279,17 +282,107 @@ button {
 }
 
 footer {
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  background-color: #FF6B00;
+ position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color:#ff6b00;
   color: white;
   text-align: center;
-  padding: 10px 0;
-  position: relative;
-  width: 100%;
+  padding: 3px 0;
+  z-index: 1000;
 }
-footer.show {
-  visibility: visible;
-  opacity: 1;
+
+#pontos {
+  background-color: #bcbebbcc; /* leve transparência */
+  color: #2e7d32; /* verde escuro */
+  font-weight: bold;
+  padding: 10px 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-size: 1.8rem;
+  
+  
+
+  z-index: 900;
+  transition: transform 0.3s ease;
+}
+
+#pontos:hover {
+  transform: scale(1.05);
+}
+
+.recompensas-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.recompensa {
+  background-color: #f5f5f5;
+  border-radius: 16px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 220px;
+  transition: transform 0.3s ease;
+}
+
+.recompensa:hover {
+  transform: translateY(-5px);
+}
+
+.recompensa h3 {
+  font-size: 1.1rem;
+  color: #2e7d32;
+  margin-bottom: 5px;
+}
+
+.recompensa p {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.recompensa img {
+  width: 115px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.recompensa button {
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.recompensa button:hover {
+  background-color: #1b5e20;
+}
+.pontos-display {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 12px 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  width: fit-content;
+  margin: 10px auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pontos-display span {
+  color: #1b5e20;
+  font-size: 1.3rem;
 }

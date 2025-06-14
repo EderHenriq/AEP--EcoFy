@@ -16,7 +16,7 @@ const icons = {
   "Esponjas": L.icon({ iconUrl: 'icons/esponja.png', iconSize: [32, 32] }),
   "Lâmpadas": L.icon({ iconUrl: 'icons/lampada.png', iconSize: [32, 32] }),
   "Óleo usado": L.icon({ iconUrl: 'icons/oleo.png', iconSize: [32, 32] }),
-  "Pneus": L.icon({ iconUrl: 'icons/pneu.png', iconSize: [32, 32] })
+  "Pneus": L.icon({ iconUrl: 'icons/pneus.png', iconSize: [32, 32] })
 };
 
 // --- PONTOS DE COLETA COM COORDENADAS CORRIGIDAS ---
@@ -113,42 +113,79 @@ function exibirPontos(filtro = "") {
 }
 exibirPontos();
 
-inputBusca.addEventListener("input", e => exibirPontos(e.target.value));
-
-exibirPontos();
-
 function logout() {
   localStorage.removeItem("logado");
   window.location.href = "index.html";
 }
 
-function abrirModal() {
-  document.getElementById('modal-resgatar').classList.remove('hidden');
+
+
+
+
+let pontosDoUsuario = parseInt(localStorage.getItem("pontos") || "0");
+atualizarPontuacaoNaTela(); // Atualiza ao carregar
+
+// Corrige busca
+const inputBusca = document.getElementById("inputBusca");
+if (inputBusca) {
+  inputBusca.addEventListener("input", e => exibirPontos(e.target.value));
 }
 
-function fecharModal() {
-  document.getElementById('modal-resgatar').classList.add('hidden');
-}
-
-function confirmarResgate() {
-  const input = document.querySelector('#modal-resgatar input').value;
-  if (input.trim() === "") {
-    alert("Por favor, insira um código válido.");
-  } else {
-    alert("Você resgatou seus pontos! Obrigado por ajudar o meio ambiente.");
-    fecharModal();
+function atualizarPontuacaoNaTela() {
+  const pontosHomeEl = document.getElementById('pontos-home');
+  if (pontosHomeEl) {
+    pontosHomeEl.textContent = pontosDoUsuario;
   }
 }
 
-  window.addEventListener("scroll", function () {
-    const footer = document.getElementById("footer");
-    const scrollTop = window.scrollY;
-    const windowHeight = window.innerHeight;
-    const docHeight = document.documentElement.scrollHeight;
+function confirmarResgate() {
+  const inputCodigo = document.getElementById('codigoResgate').value.trim();
+  let pontosAdicionar = 0;
+  let mensagem = "";
 
-    if (scrollTop + windowHeight >= docHeight - 10) {
-      footer.classList.add("show");
-    } else {
-      footer.classList.remove("show");
+  const codigos = {
+    "unicesumar10": 10,
+    "unicesumar50": 50,
+    "unicesumar100": 100
+  };
+
+  if (inputCodigo in codigos) {
+    pontosAdicionar = codigos[inputCodigo];
+    pontosDoUsuario += pontosAdicionar;
+    localStorage.setItem("pontos", pontosDoUsuario);
+    mensagem = `Você ganhou ${pontosAdicionar} pontos!`;
+    atualizarPontuacaoNaTela();
+    alert(`${mensagem} Total: ${pontosDoUsuario} pontos.`);
+  } else if (inputCodigo === "") {
+    alert("Por favor, insira um código.");
+    return;
+  } else {
+    alert("Código inválido. Tente novamente.");
+  }
+
+  fecharModal();
+}
+
+function abrirModal() {
+  document.getElementById('modal-resgatar').classList.remove('hidden');
+}
+function fecharModal() {
+  const modal = document.getElementById('modal-resgatar');
+  modal.classList.add('hidden');
+  document.getElementById('codigoResgate').value = "";
+}
+
+    function atualizarPontuacaoNaTela() {
+    const pontosHomeEl = document.getElementById('pontos-home');
+    if (pontosHomeEl) {
+        pontosHomeEl.textContent = pontosDoUsuario;
     }
-  });
+}
+
+atualizarPontuacaoNaTela();
+
+document.addEventListener('DOMContentLoaded', atualizarPontuacaoNaTela);
+  
+window.confirmarResgate = confirmarResgate;
+window.abrirModal = abrirModal; // Adicionado para garantir acesso global
+window.fecharModal = fecharModal; // Mantido para garantir acesso global

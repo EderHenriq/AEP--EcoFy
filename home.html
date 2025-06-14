@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ecofy - Coleta Sustentável</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Estilo interno para logo -->
   <style>
     .logo-btn {
       background: none;
@@ -16,64 +18,78 @@
     }
 
     .logo {
-      height: 50px;
+      height: 60px;
       width: auto;
     }
   </style>
 </head>
 <body>
   <header>
-    
+    <!-- Logo -->
     <button class="logo-btn" onclick="window.location.href='educacao.html'">
       <img src="assets/logo.jpg" class="logo" alt="Ecofy Logo" />
     </button>
 
+    <!-- Navegação -->
     <nav>
       <a href="home.html">Início</a>
       <a href="recompensas.html">Recompensas</a>
-      <a href="educacao.html">Informações</a>
-      <a><select id="filtro-tipo">
-  <option value="">Todos os tipos</option>
-  <option value="Sucatas eletrônicas">Eletrônicos</option>
-  <option value="Pilhas e baterias">Pilhas</option>
-  <option value="Vidros">Vidro</option>
-  <option value="Esponjas">Esponja</option>
-  <option value="Lâmpadas">Lâmpada</option>
-  <option value="Óleo usado">Óleo</option>
-  <option value="Pneus inservíveis">Pneus</option>
-</select></a>
+      <a href="educacao.html">Sobre</a>
+
+      <!-- Filtro de tipo -->
+      <select id="filtro-tipo">
+        <option value="">Todos os tipos</option>
+        <option value="Sucatas eletrônicas">Eletrônicos</option>
+        <option value="Pilhas e baterias">Pilhas</option>
+        <option value="Vidros">Vidro</option>
+        <option value="Esponjas">Esponja</option>
+        <option value="Lâmpadas">Lâmpada</option>
+        <option value="Óleo usado">Óleo</option>
+        <option value="Pneus inservíveis">Pneus</option>
+      </select>
+
+      <!-- Pontuação -->
+      <p class="pontos-display">Pontos: <span id="pontos-home">0</span></p>
+
+      <!-- Logout -->
       <button onclick="logout()">Sair</button>
+   
     </nav>
   </header>
 
   <main>
+    <!-- Lista de pontos de coleta -->
     <aside class="coleta">
       <h3>Pontos de coleta:</h3>
       <ul id="lista-coleta"></ul>
     </aside>
 
+    <!-- Mapa e botão de resgate -->
     <section class="mapa-container">
       <div id="mapa"></div>
-       <button class="btn-resgatar" onclick="abrirModal()">Resgatar</button>
+      <button class="btn-resgatar" onclick="abrirModal()">Resgatar</button>
     </section>
   </main>
 
+  <!-- Modal de Resgate -->
   <div id="modal-resgatar" class="modal hidden">
-  <div class="modal-content">
-    <span class="fechar" onclick="fecharModal()">&times;</span>
-    <h2>Insira o código para resgatar seus pontos.</h2>
-    <input type="text" placeholder="Digite o código aqui" />
-    <button onclick="confirmarResgate()">Confirmar</button>
+    <div class="modal-content">
+      <span class="fechar" onclick="fecharModal()">&times;</span>
+      <h2>Insira o código para resgatar seus pontos.</h2>
+      <input type="text" id="codigoResgate" placeholder="Digite o código aqui" />
+      <button onclick="confirmarResgate()">Confirmar</button>
+    </div>
   </div>
-</div>
 
-  <footer  id="footer">
+  <!-- Espaço para evitar sobreposição com o footer -->
+  <div style="height: 60px;"></div>
+
+  <!-- Rodapé -->
+  <footer id="footer">
     <p>Ecofy © 2025 - Sustentabilidade para o Futuro</p>
   </footer>
 
-  <script src="mapa.js"></script>
-
-   
-
+  <!-- Script principal -->
+  <script src="mapa.js" defer></script>
 </body>
 </html>

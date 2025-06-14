@@ -5,17 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ecofy - Educação Ambiental</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .logo-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .logo {
+      height: 60px;
+      width: auto;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <img src="assets/logo.jpg" class="logo" />
+    
+    <button class="logo-btn" onclick="window.location.href='home.html'">
+      <img src="assets/logo.jpg" class="logo" alt="Ecofy Logo" />
+    </button>
+    
     <nav>
       <a href="home.html">Início</a>
       <a href="recompensas.html">Recompensas</a>
-      <a href="educacao.html">Informações</a>
+      <a href="educacao.html">Sobre</a>
+      <p class="pontos-display">Pontos: <span id="pontos-home">0</span></p>
       <button onclick="logout()">Sair</button>
     </nav>
-  </header>
+   </header>
 
   <main class="container">
     <h2>Educação Ambiental</h2>
@@ -40,11 +58,26 @@
         <li><a href="https://reciclagem.me/" target="_blank">Reciclagem.me</a></li>
       </ul>
     </section>
+  
+ 
+ 
   </main>
 
-  <footer>
+
+  <footer id="footer">
     <p>Ecofy © 2025</p>
   </footer>
+  <script>
+  function atualizarPontuacaoNaTela() {
+    const pontosDoUsuario = parseInt(localStorage.getItem("pontos") || "0");
+    const pontosHomeEl = document.getElementById('pontos-home');
+    if (pontosHomeEl) {
+      pontosHomeEl.textContent = pontosDoUsuario;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", atualizarPontuacaoNaTela);
+</script>
 
   <script>
     function logout() {
