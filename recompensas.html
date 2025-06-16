@@ -4,45 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ecofy - Recompensas</title>
-  <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="style.css"> <!-- Link para o arquivo CSS externo -->
+
+  <!-- Estilo interno específico para a logo -->
   <style>
     .logo-btn {
-      background: none;
-      border: none;
-      padding: 0;
-      cursor: pointer;
+      background: none;   /* Remove o fundo do botão */
+      border: none;       /* Remove a borda */
+      padding: 0;         /* Remove espaçamento interno */
+      cursor: pointer;    /* Mostra o cursor de clique */
     }
 
     .logo {
-      height: 60px;
-      width: auto;
+      height: 60px;       /* Altura da logo */
+      width: auto;        /* Largura automática proporcional */
     }
   </style>
 </head>
 <body>
-  <header>
+  <header> <!-- Início do cabeçalho da página -->
     
+    <!-- Botão da logo que leva para a home -->
     <button class="logo-btn" onclick="window.location.href='home.html'">
       <img src="assets/logo.jpg" class="logo" alt="Ecofy Logo" />
     </button>
     
-    
+    <!-- Navegação -->
     <nav>
-      <a href="home.html">Início</a>
-      <a href="recompensas.html">Recompensas</a>
-      <a href="educacao.html">Sobre</a>
-      <p class="pontos-display">Pontos: <span id="pontos-home">0</span></p>
-      <button onclick="logout()">Sair</button>
+      <a href="home.html">Início</a> <!-- Link para página inicial -->
+      <a href="recompensas.html">Recompensas</a> <!-- Link para página atual -->
+      <a href="Sobre.html">Sobre</a> <!-- Link para página sobre o projeto -->
+      <p class="pontos-display">Pontos: <span id="pontos-home">0</span></p> <!-- Pontuação do topo da tela -->
+      <button onclick="logout()">Sair</button> <!-- Botão para logout -->
     </nav>
-</header>
+  </header>
 
-  <main class="container">
-    <h2>Recompensas</h2>
-    
+  <main class="container"> <!-- Conteúdo principal -->
+    <h2>Recompensas</h2> <!-- Título da seção -->
+
+    <!-- Exibe os pontos acumulados do usuário -->
     <p>Pontos acumulados: <p><span id="pontos">0</span></p></p>
 
-    <div class="recompensas-grid">
+    <div class="recompensas-grid"> <!-- Container com layout em grade das recompensas -->
       
+      <!-- Primeira recompensa -->
       <div class="recompensa">
         <h3>Ecobag personalizada</h3>
         <p>Troque por 50 pontos</p>
@@ -50,6 +55,7 @@
         <button onclick="trocarRecompensa(50)">Trocar</button>
       </div>
     
+      <!-- Segunda recompensa -->
       <div class="recompensa">
         <h3>Desconto Super Mercado</h3>
         <p>Troque por 100 pontos</p>
@@ -57,66 +63,65 @@
         <button onclick="trocarRecompensa(100)">Trocar</button>
       </div>
     
+      <!-- Terceira recompensa -->
       <div class="recompensa">
-    
         <h3>Desconto em Conta de Luz</h3>
         <p>Troque por 150 pontos</p>
         <img src="assets/luz.png" alt="luz">
         <button onclick="trocarRecompensa(150)">Trocar</button>
-      
       </div>
 
-       <div class="recompensa">
-    
+      <!-- Quarta recompensa -->
+      <div class="recompensa">
         <h3>Desconto em Conta de Água</h3>
         <p>Troque por 150 pontos</p>
         <img src="assets/agua2.png" alt="agua">
         <button onclick="trocarRecompensa(150)">Trocar</button>
-      
       </div>
     
-    </div>
+    </div> <!-- Fim do grid de recompensas -->
   </main>
 
+  <!-- Rodapé da página -->
   <footer id="footer">
-    <p>Ecofy © 2025</p>
+    <p>Ecofy © 2025 - Sustentabilidade para o Futuro</p>
   </footer>
 
-  
-  
+  <!-- Script de controle de recompensas -->
   <script>
-    const pontosEl = document.getElementById('pontos');
-    let pontos = parseInt(localStorage.getItem("pontos") || "0");
-    pontosEl.textContent = pontos;
+    const pontosEl = document.getElementById('pontos'); // Seleciona o elemento onde os pontos serão exibidos
+    let pontos = parseInt(localStorage.getItem("pontos") || "0"); // Lê os pontos salvos no localStorage ou usa 0
+    pontosEl.textContent = pontos; // Exibe os pontos na tela
 
     function trocarRecompensa(custo) {
-      if (pontos >= custo) {
-        pontos -= custo;
-        localStorage.setItem("pontos", pontos);
-        pontosEl.textContent = pontos;
-        alert("Recompensa resgatada com sucesso!");
+      if (pontos >= custo) { // Se tiver pontos suficientes
+        pontos -= custo; // Subtrai o custo da recompensa
+        localStorage.setItem("pontos", pontos); // Atualiza os pontos no localStorage
+        pontosEl.textContent = pontos; // Atualiza a exibição na tela
+        alert("Recompensa resgatada com sucesso!"); // Mostra mensagem de sucesso
       } else {
-        alert("Pontos insuficientes.");
+        alert("Pontos insuficientes."); // Mostra erro se não tiver pontos suficientes
       }
     }
 
     function logout() {
-      localStorage.removeItem("logado");
-      window.location.href = "index.html";
+      localStorage.removeItem("logado"); // Remove a chave de autenticação do usuário
+      window.location.href = "index.html"; // Redireciona para a tela de login
     }
   </script>
 
+  <!-- Script adicional para atualizar pontuação do topo da tela -->
   <script>
-  function atualizarPontuacaoNaTela() {
-    const pontosDoUsuario = parseInt(localStorage.getItem("pontos") || "0");
-    const pontosHomeEl = document.getElementById('pontos-home');
-    if (pontosHomeEl) {
-      pontosHomeEl.textContent = pontosDoUsuario;
+    function atualizarPontuacaoNaTela() {
+      const pontosDoUsuario = parseInt(localStorage.getItem("pontos") || "0"); // Obtém os pontos do localStorage
+      const pontosHomeEl = document.getElementById('pontos-home'); // Seleciona o span no topo
+      if (pontosHomeEl) {
+        pontosHomeEl.textContent = pontosDoUsuario; // Atualiza o valor no topo da tela
+      }
     }
-  }
 
-  document.addEventListener("DOMContentLoaded", atualizarPontuacaoNaTela);
-</script>
+    document.addEventListener("DOMContentLoaded", atualizarPontuacaoNaTela); // Executa a função assim que o DOM carregar
+  </script>
 
 </body>
 </html>

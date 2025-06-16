@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ecofy - Sobre</title>
+   <link rel="stylesheet" href="style.css" /> <!-- Importa o CSS externo principal -->
+
+  <!-- Estilo CSS interno específico para esta página -->
+  <style>
+    .logo-btn {
+      background: none; /* Remove fundo do botão */
+      border: none;     /* Remove a borda */
+      padding: 0;       /* Remove o espaçamento interno */
+      cursor: pointer;  /* Altera o cursor ao passar por cima */
+    }
+
+    .logo {
+      height: 60px;     /* Altura da logo */
+      width: auto;      /* Largura proporcional */
+    }
+
+    main.container {
+      padding: 20px;         /* Espaçamento interno da seção principal */
+      max-width: 1000px;     /* Largura máxima da área principal */
+      margin: 0 auto;        /* Centraliza na horizontal */
+    }
+
+    h2, h3 {
+      color: #2e7d32;        /* Verde escuro para títulos */
+      text-align: center;    /* Centraliza os títulos */
+    }
+
+    p, li {
+      font-size: 1rem;       /* Tamanho da fonte padrão */
+      line-height: 1.6;      /* Espaçamento entre linhas */
+    }
+
+    .cards-grid {
+      display: grid;                         /* Usa layout de grade */
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Gera colunas responsivas */
+      gap: 20px;                             /* Espaço entre os cards */
+      margin-top: 20px;
+    }
+
+    .card {
+      background-color: #f1f1f1;             /* Cor de fundo clara */
+      padding: 20px;                         /* Espaçamento interno */
+      border-radius: 15px;                   /* Cantos arredondados */
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+      transition: transform 0.3s;            /* Animação suave */
+    }
+
+    .card:hover {
+      transform: translateY(-5px);           /* Eleva o card ao passar o mouse */
+    }
+
+    .card h4 {
+      margin-top: 0;
+      color: #ff6b00;                        /* Laranja vibrante */
+    }
+
+    .links-uteis ul {
+      padding-left: 20px;                    /* Recuo da lista */
+    }
+
+    .links-uteis a {
+      color: #2e7d32;                        /* Verde escuro para os links */
+      text-decoration: none;                 /* Remove sublinhado */
+    }
+
+    .links-uteis a:hover {
+      text-decoration: underline;            /* Sublinha ao passar o mouse */
+    }
+
+    footer {
+      background-color: #FF6B00;             /* Fundo laranja vibrante */
+      color: white;                          /* Texto branco */
+      text-align: center;                    /* Centraliza o texto */
+      padding: 1px 0;                        /* Altura do rodapé */
+      width: 100%;                           /* Ocupa a largura total */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Botão da logo que leva para a home -->
+    <button class="logo-btn" onclick="window.location.href='home.html'">
+      <img src="assets/logo.jpg" class="logo" alt="Ecofy Logo" />
+    </button>
+
+    <!-- Navegação do topo -->
+    <nav>
+      <a href="home.html">Início</a>
+      <a href="recompensas.html">Recompensas</a>
+      <a href="educacao.html">Sobre</a> <!-- Essa página atual -->
+      <p class="pontos-display">Pontos: <span id="pontos-home">0</span></p> <!-- Exibe os pontos -->
+      <button onclick="logout()">Sair</button> <!-- Botão para logout -->
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- Seção de introdução -->
+    <section>
+      <h3>🌱 Quem somos</h3>
+      <p>
+        A Ecofy é uma iniciativa desenvolvida por um grupo de estudantes do curso de Análise e Desenvolvimento de Sistemas da Unicesumar – Maringá (PR).
+        <br><br>
+        Unimos tecnologia e sustentabilidade em um sistema que informa, educa e recompensa. Acreditamos que o cuidado com o planeta começa com conhecimento, consciência e atitude.
+        <br><br>
+        Nosso sistema mapeia pontos de coleta de resíduos e incentiva o descarte correto com recompensas por boas práticas ambientais.
+      </p>
+
+      <!-- Imagem do grupo -->
+      <img src="assets/grupoC.png" alt="grupo" id="grupo">
+    </section>
+
+    <!-- Seção educativa sobre reciclagem -->
+    <section>
+      <h3>♻️ Por que reciclar?</h3>
+      <div class="cards-grid">
+        <div class="card">
+          <h4>Eletrônicos</h4>
+          <p>Contêm metais pesados que contaminam o solo e a água. Reciclar evita poluição e recupera materiais valiosos.</p>
+        </div>
+        <div class="card">
+          <h4>Pilhas</h4>
+          <p>Possuem substâncias tóxicas como chumbo e mercúrio. Se descartadas incorretamente, contaminam o meio ambiente.</p>
+        </div>
+        <div class="card">
+          <h4>Óleo usado</h4>
+          <p>Jogar óleo na pia entope encanamentos e polui rios. Um litro de óleo pode contaminar milhares de litros de água.</p>
+        </div>
+        <div class="card">
+          <h4>Esponjas velhas</h4>
+          <p>Demoram centenas de anos para se decompor. Leve a locais que fazem reciclagem específica para esse material.</p>
+        </div>
+        <div class="card">
+          <h4>Pneus velhos</h4>
+          <p>Podem acumular água parada e gerar focos de dengue. Pneus reciclados viram asfalto, pisos e outros produtos.</p>
+        </div>
+        <div class="card">
+          <h4>Vidro</h4>
+          <p>É 100% reciclável e pode ser reutilizado infinitamente sem perder qualidade. Reduz extração de recursos naturais.</p>
+        </div>
+        <div class="card">
+          <h4>Lâmpadas</h4>
+          <p>Contêm mercúrio e devem ser descartadas em pontos específicos. A reciclagem evita contaminações graves.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção com links úteis -->
+    <section class="links-uteis">
+      <h3>🌐 Links úteis</h3>
+      <ul>
+        <li><a href="https://www.gov.br/meioambiente/pt-br" target="_blank">Ministério do Meio Ambiente</a></li>
+        <li><a href="https://reciclagem.me/" target="_blank">Reciclagem.me</a></li>
+        <li><a href="https://www.akatu.org.br/" target="_blank">Instituto Akatu</a></li>
+        <li><a href="https://www.ecycle.com.br/" target="_blank">eCycle - Consumo Consciente</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Rodapé da página -->
+  <footer>
+    <p>Ecofy © 2025 - Sustentabilidade para o Futuro</p>
+  </footer>
+
+  <!-- Script JS: atualiza a pontuação no topo da página -->
+  <script>
+    function atualizarPontuacaoNaTela() {
+      const pontosDoUsuario = parseInt(localStorage.getItem("pontos") || "0");
+      const pontosHomeEl = document.getElementById("pontos-home");
+      if (pontosHomeEl) {
+        pontosHomeEl.textContent = pontosDoUsuario;
+      }
+    }
+    document.addEventListener("DOMContentLoaded", atualizarPontuacaoNaTela); // Executa ao carregar a página
+
+    function logout() {
+      localStorage.removeItem("logado"); // Remove autenticação
+      window.location.href = "index.html"; // Redireciona para login
+    }
+  </script>
+</body>
+</html>

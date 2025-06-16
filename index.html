@@ -7,28 +7,43 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 
+
 <style>
 body{
-  background-color: #FF6B00;
+  background-color: #FF6B00; /* Define a cor de fundo da página como laranja */
 }
-
 </style>
-<body class="login-page">
-  <div class="login-container">
-    <img src="assets/logo.jpg" alt="Ecofy Logo" class="logo" />
-    <h1>Ecofy</h1>
-    <input type="text" id="usuario" placeholder="Usuário" />
-    <input type="password" id="senha" placeholder="Senha" />
-    <button onclick="login()">Entrar</button>
-    <p>Não tem conta? <a href="#" onclick="mostrarCadastro()">Cadastre-se</a></p>
 
-    <div id="cadastro" class="hidden">
-      <h2>Criar Conta</h2>
-      <input type="text" id="novoUsuario" placeholder="Novo usuário" />
-      <input type="password" id="novaSenha" placeholder="Senha" />
-      <button onclick="cadastrar()">Cadastrar</button>
+<body class="login-page"> <!-- Corpo da página com a classe CSS 'login-page' -->
+
+  <div class="login-container"> <!-- Container principal do formulário de login -->
+
+    <img src="assets/logo.jpg" alt="Ecofy Logo" class="logo" /> <!-- Logo da Ecofy com imagem e classe para estilização -->
+
+    <h1>Ecofy</h1> <!-- Título da página -->
+
+    <input type="text" id="usuario" placeholder="Usuário" /> <!-- Campo de entrada para o nome do usuário -->
+
+    <input type="password" id="senha" placeholder="Senha" /> <!-- Campo de entrada para a senha do usuário -->
+
+    <button onclick="login()">Entrar</button> <!-- Botão que aciona a função 'login()' ao ser clicado -->
+
+    <p>Não tem conta? 
+      <a href="#" onclick="mostrarCadastro()">Cadastre-se</a> <!-- Link que chama a função 'mostrarCadastro()' ao ser clicado -->
+    </p>
+
+    <div id="cadastro" class="hidden"> <!-- Div oculta para o formulário de cadastro de novo usuário -->
+      <h2>Criar Conta</h2> <!-- Título do formulário de cadastro -->
+
+      <input type="text" id="novoUsuario" placeholder="Novo usuário" /> <!-- Campo para digitar o novo nome de usuário -->
+
+      <input type="password" id="novaSenha" placeholder="Senha" /> <!-- Campo para digitar a nova senha -->
+
+      <button onclick="cadastrar()">Cadastrar</button> <!-- Botão que aciona a função 'cadastrar()' ao ser clicado -->
     </div>
+
   </div>
-  <script src="script.js"></script>
+
+  <script src="script.js"></script> <!-- Importa o arquivo JavaScript com as funções login, mostrarCadastro e cadastrar -->
 </body>
 </html>

@@ -4,39 +4,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ecofy - Coleta Sustentável</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+   <link rel="stylesheet" href="style.css" /> <!-- Importa o arquivo de estilos CSS principal do projeto -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /> <!-- Importa o estilo da biblioteca Leaflet para o mapa -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> <!-- Importa o script da biblioteca Leaflet -->
 
-  <!-- Estilo interno para logo -->
+  <!-- Estilo interno para a logo -->
   <style>
     .logo-btn {
-      background: none;
-      border: none;
-      padding: 0;
-      cursor: pointer;
+      background: none;      /* Remove o fundo do botão */
+      border: none;          /* Remove a borda */
+      padding: 0;            /* Remove espaçamento interno */
+      cursor: pointer;       /* Mostra cursor de clique */
     }
 
     .logo {
-      height: 60px;
-      width: auto;
+      height: 60px;          /* Altura da logo */
+      width: auto;           /* Largura ajustada automaticamente */
     }
   </style>
 </head>
 <body>
-  <header>
-    <!-- Logo -->
-    <button class="logo-btn" onclick="window.location.href='educacao.html'">
+  <header> <!-- Cabeçalho da página -->
+    
+    <!-- Botão com a logo que redireciona para a página "Sobre" -->
+    <button class="logo-btn" onclick="window.location.href='Sobre.html'">
       <img src="assets/logo.jpg" class="logo" alt="Ecofy Logo" />
     </button>
 
-    <!-- Navegação -->
+    <!-- Menu de navegação da aplicação -->
     <nav>
-      <a href="home.html">Início</a>
-      <a href="recompensas.html">Recompensas</a>
-      <a href="educacao.html">Sobre</a>
+      <a href="home.html">Início</a> <!-- Link para a própria página (Início) -->
+      <a href="recompensas.html">Recompensas</a> <!-- Link para a página de recompensas -->
+      <a href="Sobre.html">Sobre</a> <!-- Link para a página de informações -->
 
-      <!-- Filtro de tipo -->
+      <!-- Filtro por tipo de resíduo -->
       <select id="filtro-tipo">
         <option value="">Todos os tipos</option>
         <option value="Sucatas eletrônicas">Eletrônicos</option>
@@ -48,48 +49,48 @@
         <option value="Pneus inservíveis">Pneus</option>
       </select>
 
-      <!-- Pontuação -->
+      <!-- Exibição da pontuação do usuário -->
       <p class="pontos-display">Pontos: <span id="pontos-home">0</span></p>
 
-      <!-- Logout -->
+      <!-- Botão para logout, chama a função logout() -->
       <button onclick="logout()">Sair</button>
-   
     </nav>
   </header>
 
-  <main>
-    <!-- Lista de pontos de coleta -->
+  <main> <!-- Conteúdo principal da página -->
+    
+    <!-- Lista de pontos de coleta exibidos em uma barra lateral -->
     <aside class="coleta">
       <h3>Pontos de coleta:</h3>
-      <ul id="lista-coleta"></ul>
+      <ul id="lista-coleta"></ul> <!-- Lista que será preenchida dinamicamente via JavaScript -->
     </aside>
 
-    <!-- Mapa e botão de resgate -->
+    <!-- Área do mapa e botão de resgate de pontos -->
     <section class="mapa-container">
-      <div id="mapa"></div>
-      <button class="btn-resgatar" onclick="abrirModal()">Resgatar</button>
+      <div id="mapa"></div> <!-- Container onde o mapa Leaflet será carregado -->
+      <button class="btn-resgatar" onclick="abrirModal()">Resgatar</button> <!-- Abre o modal para resgate de pontos -->
     </section>
   </main>
 
-  <!-- Modal de Resgate -->
-  <div id="modal-resgatar" class="modal hidden">
+  <!-- Modal de Resgate de Pontos -->
+  <div id="modal-resgatar" class="modal hidden"> <!-- Modal inicialmente escondido -->
     <div class="modal-content">
-      <span class="fechar" onclick="fecharModal()">&times;</span>
+      <span class="fechar" onclick="fecharModal()">&times;</span> <!-- Ícone para fechar o modal -->
       <h2>Insira o código para resgatar seus pontos.</h2>
-      <input type="text" id="codigoResgate" placeholder="Digite o código aqui" />
-      <button onclick="confirmarResgate()">Confirmar</button>
+      <input type="text" id="codigoResgate" placeholder="Digite o código aqui" /> <!-- Campo de entrada do código -->
+      <button onclick="confirmarResgate()">Confirmar</button> <!-- Botão que chama a função para confirmar o resgate -->
     </div>
   </div>
 
-  <!-- Espaço para evitar sobreposição com o footer -->
+  <!-- Espaço extra para evitar que o rodapé cubra algum conteúdo -->
   <div style="height: 60px;"></div>
 
-  <!-- Rodapé -->
+  <!-- Rodapé fixo com créditos -->
   <footer id="footer">
     <p>Ecofy © 2025 - Sustentabilidade para o Futuro</p>
   </footer>
 
-  <!-- Script principal -->
+  <!-- Script JavaScript com as funcionalidades do mapa e interações -->
   <script src="mapa.js" defer></script>
 </body>
 </html>

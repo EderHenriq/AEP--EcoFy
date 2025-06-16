@@ -1,14 +1,17 @@
-// Redireciona para login se não estiver autenticado
+// Verifica se o usuário está autenticado; se não estiver, redireciona para a página de login (index.html)
 if (localStorage.getItem("logado") !== "true") {
   window.location.href = "index.html";
 }
 
+// Cria o mapa na div com id "mapa", centralizado nas coordenadas [-23.4251, -51.9386] com zoom 13
 const mapa = L.map("mapa").setView([-23.4251, -51.9386], 13);
 
+// Adiciona o tile layer do OpenStreetMap com os devidos créditos ao mapa
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: "© OpenStreetMap contributors"
 }).addTo(mapa);
 
+// Define ícones personalizados para cada tipo de ponto de coleta, com caminho para as imagens e tamanho
 const icons = {
   "Sucatas eletrônicas": L.icon({ iconUrl: 'icons/eletronicos.png', iconSize: [32, 32] }),
   "Pilhas e baterias": L.icon({ iconUrl: 'icons/pilhas.png', iconSize: [32, 32] }),
@@ -77,60 +80,78 @@ const pontos = [
   { nome: "Reciclanip", tipo: "Pneus", lat: -23.43460, lng: -51.91610, endereco: "Av. Guaiapó, 4550", telefone: "(44) 99129-6655" }
 ];
 
-
+// Seleciona o elemento HTML que exibirá a lista de pontos de coleta
 const lista = document.getElementById("lista-coleta");
+// Seleciona o elemento select usado para filtrar por tipo de ponto
 const filtroTipo = document.getElementById("filtro-tipo");
+// Adiciona um evento para quando o filtro mudar, chamar a função para exibir os pontos filtrados
 filtroTipo.addEventListener("change", e => exibirPontos(e.target.value));
+// Array para guardar os marcadores que são adicionados ao mapa
 const marcadores = [];
 
+// Função que exibe os pontos de coleta no mapa e na lista com base no filtro informado
 function exibirPontos(filtro = "") {
+  // Limpa a lista HTML
   lista.innerHTML = "";
+  // Remove todos os marcadores antigos do mapa
   marcadores.forEach(m => mapa.removeLayer(m));
+  // Limpa o array de marcadores
   marcadores.length = 0;
 
-  // Se filtro vazio, exibe todos
+  // Percorre todos os pontos de coleta
   pontos.forEach((p, i) => {
-    // Se filtro vazio, exibe tudo, senão filtra pelo tipo e nome
+    // Se o filtro estiver vazio ou o nome/tipo do ponto corresponder ao filtro (ignorando maiúsculas/minúsculas)
     if (
       filtro === "" ||
       p.nome.toLowerCase().includes(filtro.toLowerCase()) ||
       p.tipo.toLowerCase().includes(filtro.toLowerCase())
     ) {
+      // Cria um marcador no mapa com a posição do ponto e ícone correspondente ao tipo
       const marker = L.marker([p.lat, p.lng], {
         icon: icons[p.tipo.split(" / ")[0]] || undefined
-      }).addTo(mapa).bindPopup(`<b>${p.nome}</b><br>${p.tipo}<br>${p.endereco}<br>${p.telefone}`);
+      }).addTo(mapa)
+        // Adiciona um popup ao marcador com informações do ponto
+        .bindPopup(`<b>${p.nome}</b><br>${p.tipo}<br>${p.endereco}<br>${p.telefone}`);
+      
+      // Guarda o marcador para poder removê-lo depois, se necessário
       marcadores.push(marker);
 
+      // Cria um item de lista com as informações do ponto
       const item = document.createElement("li");
       item.innerHTML = `<em>${p.tipo}</em><br><strong>${p.nome}</strong><br>${p.endereco}<br>${p.telefone}`;
+      
+      // Ao clicar no item da lista, centraliza o mapa no ponto e abre o popup correspondente
       item.onclick = () => {
         mapa.setView([p.lat, p.lng], 16);
         marker.openPopup();
       };
+      // Adiciona o item à lista exibida na página
       lista.appendChild(item);
     }
   });
 }
+// Chama a função inicialmente para exibir todos os pontos sem filtro
 exibirPontos();
 
+// Função que realiza logout removendo a flag "logado" e redirecionando para a página de login
 function logout() {
   localStorage.removeItem("logado");
   window.location.href = "index.html";
 }
 
-
-
-
-
+// Obtém a pontuação do usuário armazenada no localStorage ou inicia em 0
 let pontosDoUsuario = parseInt(localStorage.getItem("pontos") || "0");
-atualizarPontuacaoNaTela(); // Atualiza ao carregar
+// Atualiza a exibição da pontuação na tela ao carregar
+atualizarPontuacaoNaTela();
 
-// Corrige busca
+// Seleciona o campo de busca por texto
 const inputBusca = document.getElementById("inputBusca");
+// Se existir o campo de busca, adiciona evento para filtrar os pontos conforme o texto digitado
 if (inputBusca) {
   inputBusca.addEventListener("input", e => exibirPontos(e.target.value));
 }
 
+// Função para atualizar o elemento HTML que mostra a pontuação atual do usuário
 function atualizarPontuacaoNaTela() {
   const pontosHomeEl = document.getElementById('pontos-home');
   if (pontosHomeEl) {
@@ -138,17 +159,20 @@ function atualizarPontuacaoNaTela() {
   }
 }
 
+// Função que valida o código digitado no modal de resgate e atualiza a pontuação se válido
 function confirmarResgate() {
   const inputCodigo = document.getElementById('codigoResgate').value.trim();
   let pontosAdicionar = 0;
   let mensagem = "";
 
+  // Objetos com códigos válidos e seus respectivos valores de pontos
   const codigos = {
     "unicesumar10": 10,
     "unicesumar50": 50,
     "unicesumar100": 100
   };
 
+  // Verifica se o código digitado está entre os válidos
   if (inputCodigo in codigos) {
     pontosAdicionar = codigos[inputCodigo];
     pontosDoUsuario += pontosAdicionar;
@@ -163,29 +187,33 @@ function confirmarResgate() {
     alert("Código inválido. Tente novamente.");
   }
 
+  // Fecha o modal após a ação
   fecharModal();
 }
 
+// Abre o modal de resgate removendo a classe que o esconde
 function abrirModal() {
   document.getElementById('modal-resgatar').classList.remove('hidden');
 }
+// Fecha o modal adicionando a classe que o esconde e limpa o campo de entrada
 function fecharModal() {
   const modal = document.getElementById('modal-resgatar');
   modal.classList.add('hidden');
   document.getElementById('codigoResgate').value = "";
 }
 
-    function atualizarPontuacaoNaTela() {
-    const pontosHomeEl = document.getElementById('pontos-home');
-    if (pontosHomeEl) {
-        pontosHomeEl.textContent = pontosDoUsuario;
-    }
+// Atualiza a pontuação na tela
+function atualizarPontuacaoNaTela() {
+  const pontosHomeEl = document.getElementById('pontos-home');
+  if (pontosHomeEl) {
+    pontosHomeEl.textContent = pontosDoUsuario;
+  }
 }
 
-atualizarPontuacaoNaTela();
-
+// Atualiza a pontuação na tela quando o documento estiver carregado
 document.addEventListener('DOMContentLoaded', atualizarPontuacaoNaTela);
-  
+
+// Deixa as funções confirmResgate, abrirModal e fecharModal acessíveis globalmente para serem chamadas no HTML
 window.confirmarResgate = confirmarResgate;
-window.abrirModal = abrirModal; // Adicionado para garantir acesso global
-window.fecharModal = fecharModal; // Mantido para garantir acesso global
+window.abrirModal = abrirModal; // Garantia de acesso global
+window.fecharModal = fecharModal; // Garantia de acesso global
